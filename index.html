@@ -97,8 +97,6 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            loadtext(url + "/INFO", "info");
-            loadtext(url + "/README", "readme");
             creategallery("g");
             
             const downloadLink = document.getElementById("downloadurl");
@@ -111,9 +109,10 @@
 <body>
     <main class="content-wrapper">
         <h1>Simple Manager</h1>
-        <h3 id="info">Загрузка информации...</h3>
+        <h3 id="info">The application has a simple interface: each process has a name and an icon, there are also two buttons: properties and kill. If possible, you can open the process properties and even terminate it.</h3>
         <br>
-        <h3 id="readme">Загрузка описания...</h3>
+        <h3 id="readme">This app was created to monitor the processes between Task Manager and Resmon.
+The app can help if a virus blocks these two apps.</h3>
         
         <!-- Обертка слайдера со стрелками -->
         <div class="slider-container">
