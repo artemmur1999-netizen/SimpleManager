@@ -22,27 +22,28 @@
         function createimg(id, imgUrl) {
             const father = document.getElementById(id);
             if (!father) return;
-            
             const elem = document.createElement("img");
-            elem.onerror = function () { back(elem); };
+            elem.onerror = function () {
+                back(elem);
+            };
             elem.src = imgUrl;
-            elem.alt = "Gallery item";
+            elem.alt = "Элемент галереи";
             elem.classList.add("slide-item");
-            
             // Клик открывает картинку на весь экран
-            elem.onclick = function() { openLightbox(this.src); };
-            
+            elem.onclick = function() {
+                openLightbox(this.src);
+            };
             father.appendChild(elem);
             slides.push(elem);
         }
-        
+
         function creategallery(id) {
             const father = document.getElementById(id);
             if (!father) return;
 
             createimg(id, url + "/1.png");
             createimg(id, url + "/2.png");
-            
+
             const video = document.createElement("video");
             video.controls = true;
             video.src = url + "/video.mp4";
@@ -69,8 +70,13 @@
             });
         }
 
-        function nextSlide() { showSlide(currentSlide + 1); }
-        function prevSlide() { showSlide(currentSlide - 1); }
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
 
         // Функции полноэкранного окна (Lightbox)
         function openLightbox(src) {
@@ -87,7 +93,6 @@
         async function loadtext(textUrl, id) {
             const element = document.getElementById(id);
             if (!element) return;
-
             try {
                 const response = await fetch(textUrl);
                 if (!response.ok) throw new Error("Файл не найден");
@@ -100,7 +105,6 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             creategallery("g");
-            
             const downloadLink = document.getElementById("downloadurl");
             if (downloadLink) {
                 downloadLink.href = url + "/SimpleManager.exe";
@@ -111,29 +115,27 @@
 <body>
     <main class="content-wrapper">
         <h1>Simple Manager</h1>
-        <h3 id="info">The application has a simple interface: each process has a name and an icon, there are also two buttons: properties and kill. If possible, you can open the process properties and even terminate it.</h3>
+        <h3 id="info">Приложение имеет простой интерфейс: у каждого процесса есть имя и иконка, а также две кнопки: свойства и завершение. При возможности вы можете открыть свойства процесса или завершить его работу.</h3>
         <br>
-        <h3 id="readme">This app was created to monitor the processes between Task Manager and Resmon.
-The app can help if a virus blocks these two apps.</h3>
-        
+        <h3 id="readme">Это приложение было создано для мониторинга процессов и занимает нишу между Диспетчером задач и Монитором ресурсов. Оно может помочь, если вирус блокирует эти две системные программы.</h3>
+
         <!-- Обертка слайдера со стрелками -->
         <div class="slider-container">
-            <button class="arrow-btn prev" onclick="prevSlide()">&#10094;</button>
+            <button class="arrow-btn prev" onclick="prevSlide()">❮</button>
             <div id="g"></div>
-            <button class="arrow-btn next" onclick="nextSlide()">&#10095;</button>
+            <button class="arrow-btn next" onclick="nextSlide()">❯</button>
         </div>
-        
         <br><br>
-        
+
         <a id="downloadurl" href="about:blank" download>
-            <button type="button" class="download-btn">Download</button>
+            <button type="button" class="download-btn">Скачать</button>
         </a>
     </main>
 
     <!-- Большое всплывающее окно с крестиком -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="close-btn">&times;</span>
-        <img id="lightbox-img" src="" alt="Large view" onclick="event.stopPropagation()">
+        <img id="lightbox-img" src="" alt="Полноэкранный вид" onclick="event.stopPropagation()">
     </div>
 </body>
 </html>
